@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HealthHelperReport">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Введите ваши данные, чтобы подсчитать норму потребления каллорий"
+
+            android:layout_margin="10dp"
+            android:padding="10dp"
+
+            android:fontFamily="sans-serif"
+            android:textSize="26sp"
+            android:background="#ffebee"
+            android:textColor="#f44336"/>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp">
+            <TableRow>
+                <TextView
+                    android:text="Пол:"
+                    android:textSize="20dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+
+                    />
+                <RadioGroup
+                    android:orientation="horizontal"
+                    android:id="@+id/sex">
+                    <RadioButton
+                        android:id="@+id/male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Мужской"
+                        android:layout_marginRight="10dp"
+
+                        android:onClick="onSexRBClicked"/>
+                    <RadioButton
+                        android:id="@+id/female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Женский"
+
+                        android:onClick="onSexRBClicked"/>
+
+                </RadioGroup>
+
+
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:text="Вес:"
+                    android:textSize="20dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+
+                    />
+                <EditText
+                    android:id="@+id/weight"
+                    android:textSize="20dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    />
+                <TextView
+                    android:text="кг"
+                    android:textSize="20dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="Рост:"
+                    android:textSize="20dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+
+                    />
+                <EditText
+                    android:id="@+id/height"
+                    android:textSize="20dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    />
+                <TextView
+                    android:text="см"
+                    android:textSize="20dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="Возраст:"
+                    android:textSize="20dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+
+                    />
+                <EditText
+                    android:id="@+id/age"
+                    android:textSize="20dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    />
+                <TextView
+                    android:text="годы"
+                    android:textSize="20dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+
+                    />
+            </TableRow>
+
+            <TableRow>
+                <Spinner
+                    android:id="@+id/lifestyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_span="3"/>
+            </TableRow>
+
+            <TableRow>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Подсчитать"
+                    android:onClick="calculate"
+
+                    app:layout_constraintTop_toBottomOf="@+id/calculate"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_span="3"
+                    android:layout_margin="10dp"
+                    />
+            </TableRow>
+
+        </TableLayout>
+
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
