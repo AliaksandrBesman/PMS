@@ -12,7 +12,7 @@ public class UserContext {
     public List<User> getUsers(Context context){
         if(users ==null)
         {
-        users = JSONHelper.importFromJSON(context);
+            users = JSONHelper.importFromJSON(context);
         }
         return (users == null) ? new ArrayList<User>() : users;
     }
