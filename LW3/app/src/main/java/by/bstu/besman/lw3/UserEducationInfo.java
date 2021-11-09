@@ -1,16 +1,15 @@
 package by.bstu.besman.lw3;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class UserEducationInfo extends AppCompatActivity {
 
@@ -62,7 +61,7 @@ public class UserEducationInfo extends AppCompatActivity {
     }
 
     public void next(View view) {
-        Intent intent = new Intent(this, AcceptanceUserCreation.class );
+        Intent intent = new Intent(this, UserContactInfo.class );
 
         Spinner spinner_education = (Spinner) findViewById(R.id.education);
         Spinner spinner_ed_degree = (Spinner) findViewById(R.id.ed_degree);

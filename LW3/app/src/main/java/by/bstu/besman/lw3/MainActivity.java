@@ -1,15 +1,16 @@
 package by.bstu.besman.lw3;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, users);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                User currentUser = adapter.getItem(position);
+                callUserDisplay(currentUser);
+            }
+        });
     }
 
     public void addUser(View view) {
@@ -43,5 +52,12 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         users = userContext.getUsers(this);
         adapter.notifyDataSetChanged();
+    }
+
+    private  void callUserDisplay(User user)
+    {
+        Intent intent = new Intent(this, UserInfo.class);
+        intent.putExtra(User.class.getSimpleName(), (Parcelable) user);
+        startActivity(intent);
     }
 }

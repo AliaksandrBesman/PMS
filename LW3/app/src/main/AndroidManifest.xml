@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LW3">
-        <activity android:name=".AcceptanceUserCreation"></activity>
+        <activity android:name=".UserInfo"></activity>
+        <activity android:name=".UserContactInfo" />
+        <activity android:name=".AcceptanceUserCreation" />
         <activity android:name=".UserEducationInfo" />
         <activity android:name=".UserCountryInfo" />
         <activity android:name=".UserNameInfo" />

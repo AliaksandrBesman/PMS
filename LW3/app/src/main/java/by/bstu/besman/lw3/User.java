@@ -35,6 +35,10 @@ public class User implements Serializable, Parcelable {
         return ed_degree;
     }
 
+    public String getUri() { return uri; }
+
+    public void setUri(String uri) {  this.uri = uri;  }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -63,6 +67,18 @@ public class User implements Serializable, Parcelable {
         this.ed_degree = ed_degree;
     }
 
+    public String getPhoneNumber() { return phoneNumber; }
+
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
+
+    public String getWebSite() { return webSite; }
+
+    public void setWebSite(String webSite) { this.webSite = webSite; }
+
     private String name;
     private String surname;
     private int age;
@@ -73,11 +89,19 @@ public class User implements Serializable, Parcelable {
     private String education;
     private String ed_degree;
 
+    private String uri;
+
+    private String phoneNumber;
+    private String email;
+    private String webSite;
+
     User (){}
 
     User ( String name,String surname, int age,
          String country, String city,
-         String education,String ed_degree){
+         String education,String ed_degree,
+           String uri,
+           String phoneNumber, String email,String webSite ){
 
         this.name = name;
         this.surname = surname;
@@ -88,6 +112,12 @@ public class User implements Serializable, Parcelable {
 
         this.education = education;
         this.ed_degree = ed_degree;
+
+        this.uri = uri;
+
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.webSite = webSite;
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -95,7 +125,9 @@ public class User implements Serializable, Parcelable {
         public User createFromParcel(Parcel source) {
             return new User( source.readString(), source.readString(), source.readInt(),
             source.readString(), source.readString(),
-            source.readString(),source.readString());
+            source.readString(),source.readString(),
+                    source.readString(),
+                    source.readString(),source.readString(),source.readString());
         }
 
         @Override
@@ -118,6 +150,12 @@ public class User implements Serializable, Parcelable {
         dest.writeString(city);
         dest.writeString(education);
         dest.writeString(ed_degree);
+
+        dest.writeString (uri);
+
+        dest.writeString(phoneNumber);
+        dest.writeString(email);
+        dest.writeString(webSite);
     }
 
     @Override
