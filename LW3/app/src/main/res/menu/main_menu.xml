@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/add"
+        android:title="Add"
+        android:icon="@mipmap/plus"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/menu"
+        android:title="Sort">
+        <menu>
+            <item android:id="@+id/bySurname"
+                android:title="Surname"/>
+            <item android:id="@+id/byAge"
+                android:title="Age"/>
+        </menu>
+    </item>
+</menu>

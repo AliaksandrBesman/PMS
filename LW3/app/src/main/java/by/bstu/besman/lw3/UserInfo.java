@@ -43,8 +43,6 @@ public class UserInfo extends AppCompatActivity {
         }
 
         setUserInfo(user);
-
-
     }
 
     protected void setUserInfo(User user){

@@ -24,6 +24,11 @@ public class UserContext {
 
     }
 
+    public int getSize()
+    {
+        return users.size();
+    }
+
     public static UserContext getInstance() {
         if (instance == null)
         {
