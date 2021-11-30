@@ -47,6 +47,11 @@ public class UserContext {
         users.add(user);
     }
 
+    public void editUser(User user)
+    {
+
+    }
+
     public void save(Context context)
     {
         JSONHelper.exportToJSON(context,users);

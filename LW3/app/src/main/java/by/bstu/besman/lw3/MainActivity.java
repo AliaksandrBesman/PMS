@@ -1,5 +1,8 @@
 package by.bstu.besman.lw3;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -15,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Comparator;
@@ -27,9 +31,14 @@ public class MainActivity extends AppCompatActivity {
     private List<User> users;
     UserContext userContext;
     ListView listView;
+
+    private MainActivity instance;
+
+    static public int activePosition;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instance = this;
         setContentView(R.layout.activity_main);
 
         listView = (ListView) findViewById(R.id.list);
@@ -153,7 +162,34 @@ public class MainActivity extends AppCompatActivity {
 
     public void removeItem(int position)
     {
-        users.remove(position);
-        Log.d("Main",users.size()+ " : " +userContext.getSize());
+        activePosition = position;
+        showDialog(1);
     }
+
+    DialogInterface.OnClickListener myClickListener = new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+            if (which  == Dialog.BUTTON_POSITIVE)
+            {
+                users.remove(activePosition);
+                Log.d("Main", users.size() + " : " + userContext.getSize());
+                adapter.notifyDataSetChanged();
+                userContext.save(instance);
+            }
+        }
+    };
+
+    @Nullable
+    @Override
+    protected Dialog onCreateDialog(int id, Bundle args) {
+        AlertDialog.Builder al = new AlertDialog.Builder(this);
+        // заголовок
+        al.setTitle(R.string.removing);
+        al.setMessage(R.string.remove_data);
+        al.setIcon(android.R.drawable.ic_dialog_info);
+        al.setPositiveButton(R.string.yes, myClickListener);
+        al.setNegativeButton(R.string.no, myClickListener);
+        al.setNeutralButton(R.string.cancel, myClickListener);
+        return al.create();
+    }
+
 }

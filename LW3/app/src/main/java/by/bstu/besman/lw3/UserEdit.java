@@ -1,7 +1,10 @@
 package by.bstu.besman.lw3;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ContextWrapper;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -19,6 +22,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
@@ -168,6 +172,10 @@ public class UserEdit extends AppCompatActivity {
     }
 
     public void save(View view) {
+        showDialog(1);
+    }
+
+    public void save_data(){
         saveImage();
         userContext.save(this);
 
@@ -203,5 +211,28 @@ public class UserEdit extends AppCompatActivity {
         user.setUri(file.getAbsolutePath());
 
 
+    }
+
+    DialogInterface.OnClickListener myClickListener = new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+            if (which  == Dialog.BUTTON_POSITIVE)
+            {
+             save_data();
+            }
+        }
+    };
+
+    @Nullable
+    @Override
+    protected Dialog onCreateDialog(int id, Bundle args) {
+        AlertDialog.Builder al = new AlertDialog.Builder(this);
+        // заголовок
+        al.setTitle(R.string.removing);
+        al.setMessage(R.string.remove_data);
+        al.setIcon(android.R.drawable.ic_dialog_info);
+        al.setPositiveButton(R.string.yes, myClickListener);
+        al.setNegativeButton(R.string.no, myClickListener);
+        al.setNeutralButton(R.string.cancel, myClickListener);
+        return al.create();
     }
 }
