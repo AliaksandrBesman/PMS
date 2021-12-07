@@ -1,4 +1,4 @@
-package by.bstu.besman.lw3;
+package by.bstu.besman.lw6;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,8 +10,7 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 
-public class UserCountryInfo extends AppCompatActivity {
-
+public class UserCountryInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +28,10 @@ public class UserCountryInfo extends AppCompatActivity {
             TextView preview = findViewById(R.id.preview);
             preview.setText(surname + " " + name + "пожалуйста, введите данные о месте проживания" );
         }
-
-
     }
 
     public void next(View view) {
-        Intent intent = new Intent(this,UserEducationInfo.class);
+        Intent intent = new Intent(this,UserEducationInfoActivity.class);
 
         User user = new User();
         Bundle arguments = getIntent().getExtras();
