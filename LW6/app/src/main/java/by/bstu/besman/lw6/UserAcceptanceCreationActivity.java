@@ -30,7 +30,7 @@ import java.util.Date;
 public class UserAcceptanceCreationActivity extends AppCompatActivity {
 
     String [] educations = { "начальное", "среднее", "высшее"};
-    UserContext userContext;
+    private DatabaseAdapter db_adapter;
     User user = null;
 
     @Override
@@ -39,7 +39,7 @@ public class UserAcceptanceCreationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_acceptance_creation);
 
         Bundle arguments = getIntent().getExtras();
-        userContext = UserContext.getInstance();
+        db_adapter = new DatabaseAdapter(this);
 
         if(arguments!=null){
             user = arguments.getParcelable(User.class.getSimpleName());
@@ -112,8 +112,9 @@ public class UserAcceptanceCreationActivity extends AppCompatActivity {
 
     public void save(View view) {
         saveImage();
-        userContext.addUser(user);
-        userContext.save(this);
+        db_adapter.open();
+        db_adapter.insert(user);
+        db_adapter.close();
 
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);

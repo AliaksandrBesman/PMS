@@ -28,7 +28,7 @@ public class UsersListFragment extends Fragment {
     private ArrayAdapter<User> adapter;
     private EditText nameText, ageText;
     private List<User> users;
-    UserContext userContext;
+    private DatabaseAdapter db_adapter;
     ListView listView;
 
     static public int activePosition;
@@ -61,8 +61,9 @@ public class UsersListFragment extends Fragment {
 
         listView = (ListView) view.findViewById(R.id.usersList);
 
-        userContext = UserContext.getInstance();
-        users = userContext.getUsers(mainActivity);
+        db_adapter = new DatabaseAdapter(mainActivity);
+        db_adapter.open();
+        users = db_adapter.getUsers();
 
         adapter = new ArrayAdapter<>(mainActivity, android.R.layout.simple_list_item_1, users);
         listView.setAdapter(adapter);
@@ -76,6 +77,7 @@ public class UsersListFragment extends Fragment {
         });
 
         registerForContextMenu(listView);
+        db_adapter.close();
         // Inflate the layout for this fragment
         return view;
     }
@@ -91,5 +93,15 @@ public class UsersListFragment extends Fragment {
             startActivity(intent);
         }
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        db_adapter.open();
+        users = db_adapter.getUsers();
+        db_adapter.close();
+        adapter = new ArrayAdapter<>(mainActivity, android.R.layout.simple_list_item_1, users);
+        listView.setAdapter(adapter);
     }
 }

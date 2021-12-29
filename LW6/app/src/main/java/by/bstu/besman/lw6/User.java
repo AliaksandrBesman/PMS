@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 public class User implements Serializable, Parcelable {
 
+    private int _id;
     private String name;
     private String surname;
     private int age;
@@ -22,6 +23,10 @@ public class User implements Serializable, Parcelable {
     private String phoneNumber;
     private String email;
     private String webSite;
+
+    public int getId() {
+        return _id;
+    }
 
     public String getName() {
         return name;
@@ -52,6 +57,10 @@ public class User implements Serializable, Parcelable {
     public String getPhoneNumber() { return phoneNumber; }
     public String getEmail() { return email; }
     public String getWebSite() { return webSite; }
+
+    public void setId(int id) {
+        this._id = id;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -85,11 +94,14 @@ public class User implements Serializable, Parcelable {
 
     User (){}
 
-    User ( String name,String surname, int age,
+    User ( int _id,
+           String name,String surname, int age,
            String country, String city,
            String education,String ed_degree,
            String uri,
            String phoneNumber, String email,String webSite ){
+
+        this._id = _id;
 
         this.name = name;
         this.surname = surname;
@@ -112,6 +124,7 @@ public class User implements Serializable, Parcelable {
         @Override
         public User createFromParcel(Parcel source) {
             return new User(
+                    source.readInt(),
                     source.readString(), source.readString(), source.readInt(),
                     source.readString(), source.readString(),
                     source.readString(),source.readString(),
@@ -132,6 +145,9 @@ public class User implements Serializable, Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+
+        dest.writeInt(_id);
+
         dest.writeString(name);
         dest.writeString(surname);
         dest.writeInt(age);
